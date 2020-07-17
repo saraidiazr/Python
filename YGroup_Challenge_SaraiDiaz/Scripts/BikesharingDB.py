@@ -14,7 +14,7 @@ def db_import(db_connection,data_dir):
     files = os.listdir(data_dir)
     for file in files: 
         file_name = data_dir+'\\'+file
-        csv_data = pd.read_csv(file_name,encoding='latin1')
+        csv_data = pd.read_csv(file_name,encoding='utf-8')
         csv_data.columns = csv_data.columns.str.replace(" ", "_")
 
         #Import to sqlite3
