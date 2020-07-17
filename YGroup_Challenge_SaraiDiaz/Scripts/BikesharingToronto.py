@@ -17,14 +17,12 @@ def consume_api():
   return links
 
 #Downloading data
-def get_data(links):
+def get_data(links,data_dir):
   #Setting up folder as repository for all the data related to Toronto
-  current_dir = os.getcwd()
   file = 'csv.zip'
-  folder = '\Datasets\Toronto' + '\\'
-  dir = current_dir + folder + file
-  if not os.path.exists(current_dir + '\Datasets\Toronto'):
-    os.makedirs('Datasets\Toronto')
+  dir = data_dir + '\\' + file
+  if not os.path.exists(data_dir):
+    os.makedirs(data_dir)
 
   #Getting links to download the data
   for link in links:
@@ -32,12 +30,12 @@ def get_data(links):
     if str(link).endswith('.zip'):
       urllib.request.urlretrieve(link,dir)
       zip = zipfile.ZipFile(dir, 'r')
-      zip.extractall(current_dir+folder)
+      zip.extractall(data_dir)
       zip.close()
       os.remove(dir)
 
       #Moving downloaded data into Toronto folder
-      root_dir = current_dir + folder
+      root_dir = data_dir + '\\'
       items = os.listdir(root_dir)
       for item in items: 
           if os.path.isdir(os.path.join(root_dir, item)): #filtering folders only

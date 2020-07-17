@@ -3,9 +3,8 @@ import sqlite3
 import warnings
 import os
 
-def db_setup():
-    current_dir = os.getcwd()
-    sqlite_dir = current_dir +'/SQLiteDatabaseBrowserPortable/Data'
+def db_setup(data_dir):
+    sqlite_dir = data_dir +'/SQLiteDatabaseBrowserPortable/Data'
     db_dir = sqlite_dir + '/bikesharing.db'
     warnings.filterwarnings("ignore") #to avoide warning messages
     db_connection = sqlite3.connect(db_dir)
@@ -15,7 +14,7 @@ def db_import(db_connection,data_dir):
     files = os.listdir(data_dir)
     for file in files: 
         file_name = data_dir+'\\'+file
-        csv_data = pd.read_csv(file_name)
+        csv_data = pd.read_csv(file_name,encoding='latin1')
         csv_data.columns = csv_data.columns.str.replace(" ", "_")
 
         #Import to sqlite3

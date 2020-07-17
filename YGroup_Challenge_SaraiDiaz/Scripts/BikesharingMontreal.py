@@ -24,25 +24,23 @@ def parse_html(info_without_parsing):
   return links
 
 #Downloading info
-def download_data(data_links):
+def download_data(data_links,data_dir):
   #Setting up folder as repository for all the data related to Montreal
-  current_dir = os.getcwd()
-  file = 'csv.zip'
-  folder = '\Datasets\Montreal' + '\\'
-  dir = current_dir + folder + file
-  if not os.path.exists(current_dir + '\Datasets\Montreal'):
-      os.makedirs('Datasets\Montreal')
+  file = 'csv.zip' 
+  dir = data_dir + '\\' + file
+  if not os.path.exists(data_dir):
+      os.makedirs(data_dir)
 
   #Downloading and extracting data in .zip files
   for link in data_links:
       urllib.request.urlretrieve(link,dir)
       zip = zipfile.ZipFile(dir, 'r')
-      zip.extractall(current_dir+folder)
+      zip.extractall(data_dir)
       zip.close()
       os.remove(dir)
 
   #Moving downloaded data into Montreal folder
-  root_dir = current_dir + folder
+  root_dir = data_dir + '\\'
   items = os.listdir(root_dir)
   for item in items: 
       if os.path.isdir(os.path.join(root_dir, item)): #filtering folders only
