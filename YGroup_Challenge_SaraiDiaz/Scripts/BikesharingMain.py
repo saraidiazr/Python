@@ -7,7 +7,7 @@ import os
 import requests
 from datetime import datetime
 
-#Setting variables
+# #Setting variables
 print ('Starting process at: ', datetime.now())
 current_dir = os.getcwd()
 montreal_dir = current_dir + '\Datasets\Montreal'

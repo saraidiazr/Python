@@ -1,0 +1,1 @@
+start "" "%CD%\Scripts\BikesharingMain\BikesharingMain.exe"

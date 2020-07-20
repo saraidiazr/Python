@@ -1,0 +1,43 @@
+  {
+    "city": "Montreal",
+	"source": "bikes",
+    "url": "https://www.bixi.com/en/page-27",
+    "type": "html",
+    "attr1": "document-csv col-md-2 col-sm-4 col-xs-12",
+    "attr2": "",
+    "is_nested": "",
+	"to_csv": ""	
+  },
+  {
+    "city": "Montreal",
+	"source": "collisions",
+    "url": "http://donnees.ville.montreal.qc.ca/dataset/cd722e22-376b-4b89-9bc2-7c7ab317ef6b/resource/05deae93-d9fc-4acb-9779-e0942b5e962f/download/accidents_2012_2018.zip",
+    "type": "zip",
+    "attr1": "",
+    "attr2": "",
+    "attr3": "",
+	"is_nested": "",
+	"to_csv": ""	
+  },
+  {
+    "city": "Toronto",
+    "source": "bikes",
+	"url": "https://ckan0.cf.opendata.inter.prod-toronto.ca/api/3/action/package_show?id=7e876c24-177c-4605-9cef-e50dd74c617f",
+    "type": "json",
+    "attr1": "result",
+    "attr2": "resources",
+    "attr3": "url",
+	"is_nested": "",
+	"to_csv": ""	
+  },
+    {
+    "city": "Toronto",
+    "source": "stations",
+	"url": "https://tor.publicbikesystem.net/ube/gbfs/v1/en/station_information",
+    "type": "json",
+    "attr1": "data",
+    "attr2": "stations",
+    "attr3": "",
+	"is_nested": "",
+	"to_csv": "1"	
+  },

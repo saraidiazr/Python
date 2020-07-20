@@ -38,4 +38,5 @@ create table agg_trips as
 				when 4 then 'Thursday'
 				when 5 then 'Friday'
 				else 'Saturday' 
-			end;
+			end
+	where city = 'Toronto';

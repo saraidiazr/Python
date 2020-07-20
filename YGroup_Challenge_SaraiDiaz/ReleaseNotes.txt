@@ -1,5 +1,0 @@
-Bikesharing systems of Montreal and Toronto v1.0:
-1.- Develop python scripts to collect data from Montreal and Toronto about their bikesharing and bike collisions
-2.- Created data structures on sqlite to persist data and retrieve insights about Montreal and Toronto bikesharing usage and possible corralation to the cities's collisions
-3.- Created dashboard to showcase most relevant findings
-4.- Created documentation on development and execution

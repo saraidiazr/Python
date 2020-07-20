@@ -53,10 +53,10 @@ select distinct name, latitude, longitude, 'Montreal' as city
 						 join montreal_collisions c 
 						 on abs(s.latitude-c.latitude) < 0.00009
 						and abs(s.longitude-c.longitude) < 0.00009
-						and s.source = (select max(cast source as integer) from montreal_stations)
+						and s.source = (select max(cast(source as integer)) from montreal_stations))
 	then 1 else 0 end as is_collision_nearby
 from montreal_stations
-where source = (select max(cast source as integer) from montreal_stations))
+where source = (select max(cast(source as integer)) from montreal_stations)
 union all
 select distinct name, lat, lon, 'Toronto' as city
 	, case when name in (select distinct name

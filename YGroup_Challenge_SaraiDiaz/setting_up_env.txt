@@ -1,0 +1,15 @@
+assumptions:
+	*running on winx64
+	*python 3.7 is installed
+	*the project folder is downloaded and the root dir is \YGroup_Challenge_SaraiDiaz
+	
+running the project on windows cmd:
+1.- open cmd
+2.- go to the project's directory (\YGroup_Challenge_SaraiDiaz)
+3.- got to the scripts' directory of the project (YGroup_Challenge_SaraiDiaz\Scripts)
+4.- type the following: virtualenv envYGroup (this will create the virtual environment named envYGroup)
+5.- got to the scripts' folder of the new env (\YGroup_Challenge_SaraiDiaz\Scripts\envYGroup\Scripts)
+6.- type the following: activate (this will open the virtualenv shell)
+7.- go back to the root folder (\YGroup_Challenge_SaraiDiaz)
+8.- type the following: pip install -r requirements.txt (this will install all the pkgs needed to run the project)
+9.- type the following: python ".\Scripts\BikesharingMain.py"
