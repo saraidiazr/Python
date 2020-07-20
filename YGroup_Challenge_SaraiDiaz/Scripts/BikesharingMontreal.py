@@ -4,6 +4,7 @@ import urllib.request
 import zipfile
 import shutil
 import os
+import pandas as pd 
 
 #Getting html info
 def get_html(url):
@@ -49,4 +50,22 @@ def download_data(data_links,data_dir):
               file_name = root_dir+item+'\\'+file
               shutil.move(file_name, root_dir)
           os.rmdir(root_dir + item)
+  return
+
+def validation(data_dir,db_connection):
+  root_dir = data_dir + '\\'
+  files = os.listdir(root_dir)
+  df_validation = pd.DataFrame()
+  for file in files: 
+    file_name = root_dir+'\\'+file
+    city = 'Montreal'
+    date = file[(file.find('_')+1):(file.find('.'))]
+    source_name = file
+    df_file = pd.read_csv(file_name)
+    source_count = len(df_file)
+    df_file.drop_duplicates(keep=False,inplace=True)
+    is_dedupe = 0 if source_count == len(df_file) else 1
+    df = pd.DataFrame({'city': city, 'date': date, 'source_name': source_name, 'source_count':source_count,'is_source_dedupe':is_dedupe},index=[0])
+    df_validation = df_validation.append(df)
+  df_validation.to_sql('validation_checks', db_connection, if_exists = 'append', index = False)
   return

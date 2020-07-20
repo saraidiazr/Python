@@ -59,3 +59,26 @@ def get_stations(data_dir):
   df = pd.DataFrame(stations) 
   df.to_csv(file_name, index = False, header=True)
   return
+
+def validation(data_dir,db_connection):
+  root_dir = data_dir + '\\'
+  files = os.listdir(root_dir)
+  df_validation = pd.DataFrame()
+  for file in files: 
+    file_name = root_dir+'\\'+file
+    city = 'Toronto' 
+    if '(' in file: #2017 files have a different format
+      date = file[(file.find('(')+1):(file.find(')'))]
+    else:
+      date = file[(file.find('_')+1):(file.find('.'))]
+      if len(date) > 4: #stations file only has the year in its name
+        date = date[-4:] + ' ' + date[:2] #2018 files have a different format
+    source_name = file
+    df_file = pd.read_csv(file_name)
+    source_count = len(df_file)
+    df_file.drop_duplicates(keep=False,inplace=True)
+    is_dedupe = 0 if source_count == len(df_file) else 1
+    df = pd.DataFrame({'city': city, 'date': date, 'source_name': source_name, 'source_count':source_count, 'is_source_dedupe':is_dedupe},index=[0])
+    df_validation = df_validation.append(df)
+  df_validation.to_sql('validation_checks', db_connection, if_exists = 'append', index = False)
+  return

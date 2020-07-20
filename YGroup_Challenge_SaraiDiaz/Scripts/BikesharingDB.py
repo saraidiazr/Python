@@ -31,5 +31,17 @@ def db_import(db_connection,data_dir):
             if 'stations' in file.lower():
                 csv_data.to_sql('toronto_stations', db_connection, if_exists = 'append', index = False)
             else:
+                csv_data['trip_start_time'] = pd.to_datetime(csv_data.trip_start_time)
                 csv_data.to_sql('toronto_bikes', db_connection, if_exists = 'append', index = False)
+    return
+
+def script_to_db (db_connection, script_dir):
+    if '.sql' in script_dir: #checking if is a file or a folder
+        db_connection.executescript(open(script_dir).read())
+    else:
+        files = os.listdir(script_dir)
+        for file in files: 
+            file_name = script_dir+'\\'+file
+            print("running script: ", file_name)
+            db_connection.executescript(open(file_name).read())
     return
